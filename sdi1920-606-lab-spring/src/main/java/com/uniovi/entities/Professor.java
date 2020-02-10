@@ -1,25 +1,30 @@
 package com.uniovi.entities;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+@Entity
 public class Professor {
 	@Id
 	@GeneratedValue
 	private Long id;
 	private String dni;
-	private String name;
-	private String surname;
-	private String category;
+	public String nombre;
+	private String apellido;
+	public String categoria;
 
-	public Professor(Long id, String dni, String name, String surname, String category) {
+	public Professor(Long id, String dni, String nombre, String apellido, String categoria) {
 		super();
 		this.id = id;
 		this.dni = dni;
-		this.name = name;
-		this.surname = surname;
-		this.category = category;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.categoria = categoria;
 
+	}
+	public Professor() {
+		
 	}
 
 	public String getDni() {
@@ -30,41 +35,41 @@ public class Professor {
 		this.dni = dni;
 	}
 
-	public String getName() {
-		return name;
+	public String getnombre() {
+		return nombre;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setnombre(String nombre) {
+		this.nombre = nombre;
 	}
 
-	public String getSurname() {
-		return surname;
+	public String getApellido() {
+		return apellido;
 	}
 
-	public void setSurname(String surname) {
-		this.surname = surname;
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
 	}
 
 	public String getCategory() {
-		return category;
+		return categoria;
 	}
 
-	public void setCategory(String category) {
-		this.category = category;
+	public void setCategory(String categoria) {
+		this.categoria = categoria;
 	}
 
 	public Long getId() {
-		// TODO Auto-generated method stub
 		return id;
 	}
 
 	public void setId(long l) {
-		this.id = id;
+		this.id = l;
 	}
 
 	@Override
 	public String toString() {
-		return "DNI: "+dni+" - Nombre: "+name+" "+surname;
+		return "Professor [id=" + id + ", dni=" + dni + ", nombre=" + nombre + ", apellido=" + apellido + ", categoria="
+				+ categoria + "]";
 	}
 }
