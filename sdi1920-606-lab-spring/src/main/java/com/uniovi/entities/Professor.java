@@ -51,11 +51,11 @@ public class Professor {
 		this.apellido = apellido;
 	}
 
-	public String getCategory() {
+	public String getCategoria() {
 		return categoria;
 	}
 
-	public void setCategory(String categoria) {
+	public void setCategoria(String categoria) {
 		this.categoria = categoria;
 	}
 
