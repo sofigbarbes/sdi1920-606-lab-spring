@@ -61,11 +61,11 @@ public class MarksControllers {
 //		return marksService.getMarks().toString();// "Getting List";
 //	}
 
-//	@RequestMapping("/mark/add")
-//	public String setMark() {
-//		return "Adding Mark";
-//	}
-
+	@RequestMapping("/mark/add")
+	public String setMark() {
+		return "/mark/add";
+	}
+	
 //	@RequestMapping(value = "/mark/add", method = RequestMethod.POST)
 //	public String setMark() {
 //		return "Adding Mark";

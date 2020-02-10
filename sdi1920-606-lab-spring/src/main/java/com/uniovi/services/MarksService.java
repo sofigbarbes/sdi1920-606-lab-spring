@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import com.uniovi.entities.Mark;
 import com.uniovi.repositories.MarksRepository;
 
-@Service
+@Service //beang
 public class MarksService {
 	// private List<Mark> marksList = new LinkedList<Mark>();
 	@Autowired
