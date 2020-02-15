@@ -65,7 +65,12 @@ public class MarksControllers {
 	public String setMark() {
 		return "/mark/add";
 	}
-	
+
+	@RequestMapping("/mark/list/update")
+	public String updateList(Model model) {
+		model.addAttribute("markList", marksService.getMarks());
+		return "mark/list :: tableMarks";
+	}
 //	@RequestMapping(value = "/mark/add", method = RequestMethod.POST)
 //	public String setMark() {
 //		return "Adding Mark";
