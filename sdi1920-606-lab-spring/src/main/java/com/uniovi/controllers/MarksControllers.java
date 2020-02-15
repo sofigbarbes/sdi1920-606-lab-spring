@@ -10,12 +10,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.uniovi.entities.Mark;
 import com.uniovi.services.MarksService;
+import com.uniovi.services.UsersService;
 
 @Controller
 public class MarksControllers {
 
 	@Autowired // Inyectar el servicio
 	private MarksService marksService;
+
+	@Autowired
+	private UsersService usersService;
 
 	@RequestMapping("/mark/list")
 	public String getList(Model model) {
@@ -25,8 +29,12 @@ public class MarksControllers {
 
 	@RequestMapping(value = "/mark/edit/{id}", method = RequestMethod.POST)
 	public String setEdit(Model model, @PathVariable Long id, @ModelAttribute Mark mark) {
-		mark.setId(id);
-		marksService.addMark(mark);
+		Mark original = marksService.getMark(id);
+		// modificar solo score y description
+		original.setScore(mark.getScore());
+		original.setDescription(mark.getDescription());
+		marksService.addMark(original);
+
 		return "redirect:/mark/details/" + id;
 	}
 
@@ -53,24 +61,28 @@ public class MarksControllers {
 	@RequestMapping(value = "/mark/edit/{id}")
 	public String getEdit(Model model, @PathVariable Long id) {
 		model.addAttribute("mark", marksService.getMark(id));
+		model.addAttribute("usersList", usersService.getUsers());
+
 		return "mark/edit";
 	}
 
-//	@RequestMapping("/mark/list")
-//	public String getList() {
-//		return marksService.getMarks().toString();// "Getting List";
+//	@RequestMapping("/mark/add")
+//	public String setMark() {
+//		return "/mark/add";
 //	}
-
-	@RequestMapping("/mark/add")
-	public String setMark() {
-		return "/mark/add";
-	}
 
 	@RequestMapping("/mark/list/update")
 	public String updateList(Model model) {
 		model.addAttribute("markList", marksService.getMarks());
 		return "mark/list :: tableMarks";
 	}
+
+	@RequestMapping(value = "/mark/add")
+	public String getMark(Model model) {
+		model.addAttribute("usersList", usersService.getUsers());
+		return "mark/add";
+	}
+
 //	@RequestMapping(value = "/mark/add", method = RequestMethod.POST)
 //	public String setMark() {
 //		return "Adding Mark";
@@ -85,5 +97,10 @@ public class MarksControllers {
 	 * @RequestMapping("/mark/details") public String getDetail(@RequestParam long
 	 * id) { return "Getting Details: " + id; }
 	 */
+
+//	@RequestMapping("/mark/list")
+//	public String getList() {
+//		return marksService.getMarks().toString();// "Getting List";
+//	}
 
 }
