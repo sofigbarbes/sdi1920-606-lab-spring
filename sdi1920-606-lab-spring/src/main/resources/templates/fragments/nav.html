@@ -49,6 +49,14 @@
 						<li><a href="/user/add" th:text="#{agregarUsuario}"></a></li>
 						<li><a href="/user/list" th:text="#{verUsuarios}"></a></li>
 					</ul></li>
+				<li id="teachers-menu" class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#" th:text="#{gestionProfesores}"><span
+						class="caret"></span>
+				</a>
+					<ul class="dropdown-menu">
+						<li><a href="/professor/add" th:text="#{agregarProfesor}"></a></li>
+						<li><a href="/professor/list" th:text="#{verProfesores}"></a></li>
+					</ul></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="/signup" th:text="#{signup.message}"> <span

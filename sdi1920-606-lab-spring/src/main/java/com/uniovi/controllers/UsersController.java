@@ -34,12 +34,19 @@ public class UsersController {
 
 	@RequestMapping(value = "/user/add")
 	public String getUser(Model model) {
+		model.addAttribute("user", new User());
 		model.addAttribute("usersList", usersService.getUsers());
 		return "user/add";
 	}
 
 	@RequestMapping(value = "/user/add", method = RequestMethod.POST)
-	public String setUser(@ModelAttribute User user) {
+	public String setUser(@Validated User user, BindingResult result) {
+		user.setPassword("default");
+		user.setPasswordConfirm("default");
+		signUpFormValidator.validate(user, result);
+		if (result.hasErrors()) {
+			return "user/add";
+		}
 		usersService.addUser(user);
 		return "redirect:/user/list";
 	}
@@ -69,7 +76,7 @@ public class UsersController {
 		activeUser.setDni(user.getDni());
 		activeUser.setName(user.getName());
 		activeUser.setLastName(user.getLastName());
-		
+
 		usersService.addUser(activeUser);
 		return "redirect:/user/details/" + id;
 	}
