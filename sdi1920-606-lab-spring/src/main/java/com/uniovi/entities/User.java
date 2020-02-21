@@ -12,6 +12,14 @@ public class User {
 	private String dni;
 	private String name;
 	private String lastName;
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
 	private String role;
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private Set<Mark> marks;
