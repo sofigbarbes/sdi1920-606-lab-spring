@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>sdi1920-606-lab-spring</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+		<nav th:replace="fragments/nav" />
+
+
+
+	<div class="container">
+		<h2>Detalles del usuario</h2>
+		<div class="panel panel-default">
+			<div class="panel-heading">DNI</div>
+			<div class="panel-body" th:text="${user.dni}">28276</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">Nombre</div>
+			<div class="panel-body" th:text="${user.name}">
+				Ej. Pablo</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">Apellidos</div>
+			<div class="panel-body" th:text="${user.lastName}">Sanchez</div>
+		</div>
+	</div>
+
+
+</body>
+</html>
