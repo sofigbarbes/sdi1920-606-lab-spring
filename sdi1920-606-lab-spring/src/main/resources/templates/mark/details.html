@@ -14,18 +14,18 @@
 <body>
 	<nav th:replace="fragments/nav" />
 	<div class="container">
-		<h2 th:text="${markDetails}"></h2>
+		<h2 th:text="#{markDetails}"></h2>
 		<div class="panel panel-default">
 			<div class="panel-heading">DNI</div>
 			<div class="panel-body" >28276</div>
 		</div>
 		<div class="panel panel-default">
-			<div class="panel-heading" th:text="${descripcion}"></div>
+			<div class="panel-heading" th:text="#{descripcion}"></div>
 			<div class="panel-body" th:text="${mark.description}">
 				Ejercicio 1</div>
 		</div>
 		<div class="panel panel-default">
-			<div class="panel-heading" th:text="${score}"></div>
+			<div class="panel-heading" th:text="#{score}"></div>
 			<div class="panel-body" th:text="${mark.score}">100</div>
 		</div>
 	</div>

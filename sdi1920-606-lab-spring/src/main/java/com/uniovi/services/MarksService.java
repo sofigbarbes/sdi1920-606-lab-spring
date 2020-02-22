@@ -13,6 +13,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.uniovi.entities.Mark;
+import com.uniovi.entities.User;
 import com.uniovi.repositories.MarksRepository;
 
 @Service // beang
@@ -39,7 +40,6 @@ public class MarksService {
 		consultedList.add(obtainedmark);
 		httpSession.setAttribute("consultedList", consultedList);
 		return obtainedmark;
-//		return marksRepository.findById(id).get();
 	}
 
 	public void addMark(Mark mark) {
@@ -60,6 +60,16 @@ public class MarksService {
 		}
 	}
 
+	public List<Mark> getMarksForUser(User user) {
+		List<Mark> marks = new ArrayList<Mark>();
+		if (user.getRole().equals("ROLE_STUDENT")) {
+			marks = marksRepository.findAllByUser(user);
+		}
+		if (user.getRole().equals("ROLE_PROFESSOR")) {
+			marks = getMarks();
+		}
+		return marks;
+	}
 //	@PostConstruct
 //	public void init() {
 //		marksList.add(new Mark(1L, "Ejercicio 1", 10.0));
