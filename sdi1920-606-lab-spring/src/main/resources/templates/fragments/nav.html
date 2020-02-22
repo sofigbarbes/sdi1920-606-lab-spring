@@ -10,7 +10,7 @@
 			<img src="/img/student-48.png" alt="logo" />
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
-			<ul class="nav navbar-nav">
+			<ul class="nav navbar-nav" sec:authorize="isAuthenticated()">
 				<li class="dropdown"><a id="btnLanguage" href="#"
 					class="dropdown-toggle" data-toggle="dropdown" role="button"
 					aria-haspopup="true" aria-expanded="false"> <span
@@ -36,35 +36,41 @@
 				<li><a href="/">Home</a></li>
 				<li id="marks-menu" class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#" th:text="#{gestionNotas}"><span
-						class="caret"></span>
-				</a>
+						class="caret"></span> </a>
 					<ul class="dropdown-menu">
-						<li><a href="/mark/add" th:text="#{agregarNota}"></a></li>
+						<li sec:authorize="hasRole('ROLE_PROFESSOR')"><a
+							href="/mark/add" th:text="#{agregarNota}"></a></li>
 						<li><a href="/mark/list" th:text="#{verNotas}"></a></li>
 					</ul></li>
-				<li id="users-menu" class="dropdown"><a class="dropdown-toggle"
-					data-toggle="dropdown" href="#" th:text="#{gestionUsuarios}"><span
-						class="caret"></span></a>
+				<li id="users-menu" class="dropdown"
+					sec:authorize="hasRole('ROLE_ADMIN')"><a
+					class="dropdown-toggle" data-toggle="dropdown" href="#"
+					th:text="#{gestionUsuarios}"><span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="/user/add" th:text="#{agregarUsuario}"></a></li>
 						<li><a href="/user/list" th:text="#{verUsuarios}"></a></li>
 					</ul></li>
-				<li id="teachers-menu" class="dropdown"><a class="dropdown-toggle"
-					data-toggle="dropdown" href="#" th:text="#{gestionProfesores}"><span
-						class="caret"></span>
-				</a>
+				<li id="teachers-menu" class="dropdown"><a
+					class="dropdown-toggle" data-toggle="dropdown" href="#"
+					th:text="#{gestionProfesores}"><span class="caret"></span> </a>
 					<ul class="dropdown-menu">
 						<li><a href="/professor/add" th:text="#{agregarProfesor}"></a></li>
 						<li><a href="/professor/list" th:text="#{verProfesores}"></a></li>
 					</ul></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="/signup" th:text="#{signup.message}"> <span
+				<li sec:authorize="!isAuthenticated()"><a href="/signup"
+					th:text="#{signup.message}"> <span
 						class="glyphicon glyphicon-user" th:text="#{signup.message}"></span>
 				</a></li>
-				<li><a href="/login" th:text="#{login.message}"> <span
+				<li sec:authorize="!isAuthenticated()"><a href="/login"
+					th:text="#{login.message}"> <span
 						class="glyphicon glyphicon-log-in"></span>
 				</a></li>
+				<li sec:authorize="isAuthenticated()"><a href="/logout"> <span
+						class="glyphicon glyphicon-log-out"></span> Desconectar
+				</a></li>
+
 			</ul>
 		</div>
 	</div>
