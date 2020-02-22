@@ -5,8 +5,6 @@ import java.security.Principal;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.uniovi.entities.Mark;
 import com.uniovi.entities.User;
@@ -36,14 +35,6 @@ public class MarksControllers {
 
 	@Autowired
 	private HttpSession httpSession;
-
-	@RequestMapping("/mark/list")
-	public String getList(Model model, Principal principal) {
-		String dni = principal.getName(); // DNI es el name de la autenticación
-		User user = usersService.getUserByDni(dni);
-		model.addAttribute("markList", marksService.getMarksForUser(user));
-		return "mark/list";
-	}
 
 	@RequestMapping(value = "/mark/edit/{id}", method = RequestMethod.POST)
 	public String setEdit(Model model, @PathVariable Long id, @ModelAttribute Mark mark) {
@@ -119,6 +110,20 @@ public class MarksControllers {
 		marksService.setMarkResend(false, id);
 		return "redirect:/mark/list";
 	}
+
+	@RequestMapping("/mark/list")
+	public String getList(Model model, Principal principal,
+			@RequestParam(value = "", required = false) String searchText) {
+		String dni = principal.getName(); // DNI es el name de la autenticaciOn
+		User user = usersService.getUserByDni(dni);
+		if (searchText != null && !searchText.isEmpty()) {
+			model.addAttribute("markList", marksService.searchMarksByDescriptionAndNameForUser(searchText, user));
+		} else {
+			model.addAttribute("markList", marksService.getMarksForUser(user));
+		}
+		return "mark/list";
+	}
+
 //	@RequestMapping(value = "/mark/add", method = RequestMethod.POST)
 //	public String setMark() {
 //		return "Adding Mark";
@@ -150,6 +155,15 @@ public class MarksControllers {
 //	public String updateList(Model model) {
 //		model.addAttribute("markList", marksService.getMarks());
 //		return "mark/list :: tableMarks";
+//	}
+
+//
+//	@RequestMapping("/mark/list")
+//	public String getList(Model model, Principal principal) {
+//		String dni = principal.getName(); // DNI es el name de la autenticación
+//		User user = usersService.getUserByDni(dni);
+//		model.addAttribute("markList", marksService.getMarksForUser(user));
+//		return "mark/list";
 //	}
 
 }
