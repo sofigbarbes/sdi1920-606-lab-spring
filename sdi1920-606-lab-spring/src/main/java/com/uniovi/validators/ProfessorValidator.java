@@ -1,8 +1,5 @@
 package com.uniovi.validators;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -28,12 +25,6 @@ public class ProfessorValidator implements Validator {
 	public void validate(Object target, Errors errors) {
 		Professor professor = (Professor) target;
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "dni", "Error.empty");
-//		if (professor.getDni().length() < 5 || professor.getDni().length() > 24) {
-//			errors.rejectValue("dni", "Error.signup.dni.length");
-//		}
-//		if (professorService.getProfessor(professor.getDni()) != null) {
-//			errors.rejectValue("dni", "Error.signup.dni.duplicate");
-//		}
 		if (professor.getnombre().length() < 5 || professor.getnombre().length() > 24) {
 			errors.rejectValue("nombre", "Error.signup.name.length");
 		}

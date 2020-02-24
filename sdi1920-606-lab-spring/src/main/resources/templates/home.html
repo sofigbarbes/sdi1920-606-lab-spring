@@ -13,30 +13,7 @@
 
 		<p th:text="#{welcome.userNotes}"></p>
 		<div class="table-responsive">
-			<table class="table table-hover">
-				<thead>
-					<tr>
-						<th class="col-md-1">id</th>
-						<th th:text="#{descripcion}"></th>
-						<th th:text="#{score}"></th>
-						<th class="col-md-1"></th>
-						<th class="col-md-1"></th>
-						<th class="col-md-1"></th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="mark : ${markList}">
-						<td th:text="${mark.id}">1</td>
-						<td th:text="${mark.description}">Ejercicio 1</td>
-						<td th:text="${mark.score}">10</td>
-						<td><a th:href="${'/mark/details/' + mark.id}">detalles</a></td>
-						<td><a sec:authorize="hasRole('ROLE_PROFESSOR')"
-							th:href="${'/mark/edit/' + mark.id}">modificar</a></td>
-						<td><a sec:authorize="hasRole('ROLE_PROFESSOR')"
-							th:href="${'/mark/delete/' + mark.id}">eliminar</a></td>
-					</tr>
-				</tbody>
-			</table>
+			<table th:replace="fragments/tableMarks"></table>
 		</div>
 	</div>
 	<footer th:replace="fragments/footer" />
