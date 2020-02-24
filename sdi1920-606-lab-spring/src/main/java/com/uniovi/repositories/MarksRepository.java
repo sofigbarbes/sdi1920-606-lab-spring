@@ -28,5 +28,6 @@ public interface MarksRepository extends CrudRepository<Mark, Long> {
 	@Query("SELECT r FROM Mark r WHERE (LOWER(r.description) LIKE LOWER(?1) OR LOWER(r.user.name) LIKE LOWER(?1)) AND r.user = ?2 ")
 	Page<Mark> searchByDescriptionNameAndUser(Pageable pageable, String seachtext, User user);
 
+	
 	Page<Mark> findAll(Pageable pageable);
 }
