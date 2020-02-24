@@ -13,7 +13,7 @@
 </head>
 <body>
 
-		<nav th:replace="fragments/nav" />
+	<nav th:replace="fragments/nav" />
 
 
 
@@ -43,9 +43,12 @@
 						<td th:text="${professor.nombre}">Nombre</td>
 						<td th:text="${professor.apellido}">Apellido</td>
 						<td th:text="${professor.categoria}">Categoria</td>
-						<td><a th:href="${'/professor/details/' +professor.id}">detalles</a></td>
-						<td><a th:href="${'/professor/edit/' + professor.id}">modificar</a></td>
-						<td><a th:href="${'/professor/delete/' + professor.id}">eliminar</a></td>
+						<td><a th:href="${'/professor/details/' +professor.id}"
+							sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_PROFESSOR')">detalles</a></td>
+						<td><a th:href="${'/professor/edit/' + professor.id}"
+							sec:authorize="hasRole('ROLE_ADMIN')">modificar</a></td>
+						<td><a th:href="${'/professor/delete/' + professor.id}"
+							sec:authorize="hasRole('ROLE_ADMIN')">eliminar</a></td>
 					</tr>
 				</tbody>
 			</table>

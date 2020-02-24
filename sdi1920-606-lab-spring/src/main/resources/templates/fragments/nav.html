@@ -26,7 +26,7 @@
 								th:src="@{/img/if_spain_flag.png}"
 								style="border: 0; float: left; margin-right: 15px" /> <span
 								th:text="#{language.es}"></span>
-						</a></li> 
+						</a></li>
 						<li><a id="btnFrench" value="FR"> <img
 								th:src="@{/img/if_spain_flag.png}"
 								style="border: 0; float: left; margin-right: 15px" /> <span
@@ -34,9 +34,9 @@
 						</a></li>
 					</ul></li>
 				<li><a href="/">Home</a></li>
-				<li id="marks-menu" class="dropdown"><a
-					class="dropdown-toggle" data-toggle="dropdown" href="#"
-					th:text="#{gestionNotas}"><span class="caret"></span> </a>
+				<li id="marks-menu" class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#" th:text="#{gestionNotas}"><span
+						class="caret"></span> </a>
 					<ul class="dropdown-menu">
 						<li sec:authorize="hasRole('ROLE_PROFESSOR')"><a
 							href="/mark/add" th:text="#{agregarNota}"></a></li>
@@ -50,12 +50,12 @@
 						<li><a href="/user/add" th:text="#{agregarUsuario}"></a></li>
 						<li><a href="/user/list" th:text="#{verUsuarios}"></a></li>
 					</ul></li>
-				<li id="teachers-menu" class="dropdown"
-					sec:authorize="hasRole('ROLE_ADMIN')"><a
+				<li id="teachers-menu" class="dropdown"><a
 					class="dropdown-toggle" data-toggle="dropdown" href="#"
 					th:text="#{gestionProfesores}"><span class="caret"></span> </a>
 					<ul class="dropdown-menu">
-						<li><a href="/professor/add" th:text="#{agregarProfesor}"></a></li>
+						<li sec:authorize="hasRole('ROLE_ADMIN')"><a
+							href="/professor/add" th:text="#{agregarProfesor}"></a></li>
 						<li><a href="/professor/list" th:text="#{verProfesores}"></a></li>
 					</ul></li>
 			</ul>
