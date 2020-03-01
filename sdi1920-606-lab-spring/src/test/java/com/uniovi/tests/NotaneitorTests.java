@@ -5,14 +5,18 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
+import org.junit.Test;
 import org.junit.runners.MethodSorters;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.springframework.boot.test.context.SpringBootTest;
+
+import com.uniovi.tests.pageobjects.PO_HomeView;
+import com.uniovi.tests.pageobjects.PO_Properties;
+
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class NotaneitorTests {
-	static String PathFirefox65 = "D:\\PROGRAMAS\\FIREFOX\\FIREFOX 65.0.1";
-	static String Geckdriver024 = "C:\\Windows\\System32\\cmd.exe";
+	static String PathFirefox65 = "D:\\PROGRAMAS\\FIREFOX\\FIREFOX 65.0.1\\firefox.exe";
+	static String Geckdriver024 = "F:\\TERCERO\\SDI\\OneDrive_2020-02-29\\material\\geckodriver024win64.exe";
 	static WebDriver driver = getDriver(PathFirefox65, Geckdriver024);
 	static String URL = "http://localhost:8090";
 
@@ -40,5 +44,32 @@ public class NotaneitorTests {
 		System.setProperty("webdriver.gecko.driver", Geckdriver);
 		WebDriver driver = new FirefoxDriver();
 		return driver;
+	}
+
+	@Test
+	public void PR01() {
+		PO_HomeView.checkWelcome(driver, PO_Properties.getSPANISH());
+	}
+
+	// PR02. OPción de navegación. Pinchar en el enlace Registro en la página home
+	@Test
+	public void PR02() {
+		PO_HomeView.clickOption(driver, "signup", "class", "btn btn-primary");
+	}
+
+	// PR03. OPción de navegación. Pinchar en el enlace Identificate en la página
+	// home
+	@Test
+	public void PR03() {
+		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+	}
+
+	// PR04. OPción de navegación. Cambio de idioma de Español a Ingles y vuelta a
+	// Español
+	@Test
+	public void PR04() {
+		PO_HomeView.checkChangeIdiom(driver, "btnSpanish", "btnEnglish", PO_Properties.getSPANISH(),
+				PO_Properties.getENGLISH());
+		// SeleniumUtils.esperarSegundos(driver, 2);
 	}
 }
