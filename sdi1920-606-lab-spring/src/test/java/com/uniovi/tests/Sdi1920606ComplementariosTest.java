@@ -1,9 +1,5 @@
 package com.uniovi.tests;
 
-import static org.junit.Assert.assertTrue;
-
-import java.util.List;
-
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -13,16 +9,12 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-import com.uniovi.tests.pageobjects.PO_HomeView;
-import com.uniovi.tests.pageobjects.PO_LoginView;
 import com.uniovi.tests.pageobjects.PO_PrivateView;
 import com.uniovi.tests.pageobjects.PO_Properties;
 import com.uniovi.tests.pageobjects.PO_RegisterView;
 import com.uniovi.tests.pageobjects.PO_View;
-import com.uniovi.utils.SeleniumUtils;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class Sdi1920606ComplementariosTest {
@@ -66,17 +58,7 @@ public class Sdi1920606ComplementariosTest {
 		PO_PrivateView.checkElementClickIndex(driver, "//a[contains(@href, 'professor/add')]", 0);
 
 		PO_PrivateView.fillFormAddProfessor(driver, "99999988S", "Sofia", "Garcia", "ciencias");
-		/*
-		 * PO_PrivateView.checkElementClickIndex(driver,
-		 * "//a[contains(@class, 'page-link')]", 3);
-		 * 
-		 * PO_PrivateView.checkElementClickIndex(driver,
-		 * "//a[contains(@class, 'page-link')]", 3);
-		 */
 		PO_View.checkElement(driver, "text", "99999988S");
-
-		// PO_PrivateView.clickOption(driver, "logout", "text", "Identifícate");
-
 	}
 
 	@Test
@@ -95,25 +77,23 @@ public class Sdi1920606ComplementariosTest {
 
 		PO_PrivateView.fillFormAddProfessor(driver, "988S", "Sofdia", "Gardcia", "cidencias");
 
-		PO_View.getP(); // COmprobamos el error de DNI repetido.
+		PO_View.getP();
 		PO_RegisterView.checkKey(driver, "Error.signup.dni.length", PO_Properties.getSPANISH());
 
 		PO_PrivateView.fillFormAddProfessor(driver, "99999988S", "Sia", "Gardcia", "cidencias");
 
-		PO_View.getP(); // COmprobamos el error de DNI repetido.
+		PO_View.getP();
 		PO_RegisterView.checkKey(driver, "Error.signup.name.length", PO_Properties.getSPANISH());
 
 		PO_PrivateView.fillFormAddProfessor(driver, "99999988S", "Sofia", "Gar", "cidencias");
 
-		PO_View.getP(); // COmprobamos el error de DNI repetido.
+		PO_View.getP();
 		PO_RegisterView.checkKey(driver, "Error.signup.lastName.length", PO_Properties.getSPANISH());
 
 		PO_PrivateView.fillFormAddProfessor(driver, "999999884", "Sofia", "Garcia", "ciencias");
 
-		PO_View.getP(); // COmprobamos el error de DNI repetido.
+		PO_View.getP(); 
 		PO_RegisterView.checkKey(driver, "Error.signup.dni.format", PO_Properties.getSPANISH());
-
-		// PO_View.checkElement(driver, "text", "99999988S");
 
 	}
 
@@ -124,11 +104,7 @@ public class Sdi1920606ComplementariosTest {
 		PO_PrivateView.checkElementClickIndex(driver, "//li[contains(@id,'teachers-menu')]/a", 0);
 
 		PO_PrivateView.checkElementClickIndex(driver, "//a[contains(@href, 'professor/add')]", 0);
-//		driver.navigate().to("http://localhost:8090/professor/add");
-		By enlace = By.xpath("//html/body/h1[contains(text(), 'Forbidden')]");
-
-		// PO_PrivateView.clickOption(driver, "logout", "text", "Identifícate");
-
+		By.xpath("//html/body/h1[contains(text(), 'Forbidden')]");
 	}
 
 }
