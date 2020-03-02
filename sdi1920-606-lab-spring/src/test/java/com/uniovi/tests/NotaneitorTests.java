@@ -57,145 +57,119 @@ public class NotaneitorTests {
 		return driver;
 	}
 
-	@Test
-	public void PR01() {
-		PO_HomeView.checkWelcome(driver, PO_Properties.getSPANISH());
-	}
-
-	// PR02. OPción de navegación. Pinchar en el enlace Registro en la página home
-	@Test
-	public void PR02() {
-		PO_HomeView.clickOption(driver, "signup", "class", "btn btn-primary");
-	}
-
-	// PR03. OPción de navegación. Pinchar en el enlace Identificate en la página
-	// home
-	@Test
-	public void PR03() {
-		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
-	}
-
-	// PR04. OPción de navegación. Cambio de idioma de Español a Ingles y vuelta a
-	// Español
-	@Test
-	public void PR04() {
-		PO_HomeView.checkChangeIdiom(driver, "btnSpanish", "btnEnglish", PO_Properties.getSPANISH(),
-				PO_Properties.getENGLISH());
-		// SeleniumUtils.esperarSegundos(driver, 2);
-	}
-
-	// PR05. Prueba del formulario de registro. registro con datos correctos
-	@Test
-	public void PR05() {
-		// Vamos al formulario de registro
-		PO_HomeView.clickOption(driver, "signup", "class", "btn btn-primary");
-		// Rellenamos el formulario.
-		PO_RegisterView.fillForm(driver, "77777778A", "Josefo", "Perez", "77777", "77777");
-		// Comprobamos que entramos en la sección privada
-		PO_View.checkElement(driver, "text", "Notas del usuario");
-	}
-
-	// PR06. Prueba del formulario de registro. DNI repetido en la BD, Nombre corto,
-	// .... pagination
-	@Test
-	public void PR06() {
-		// Vamos al formulario de registro
-		PO_HomeView.clickOption(driver, "signup", "class", "btn btn-primary");
-		// Rellenamos el formulario.
-		PO_RegisterView.fillForm(driver, "99999990A", "Josefo", "Perez", "77777", "77777");
-		PO_View.getP();
-		// COmprobamos el error de DNI repetido.
-		PO_RegisterView.checkKey(driver, "Error.signup.dni.duplicate", PO_Properties.getSPANISH());
-		// Rellenamos el formulario.
-		PO_RegisterView.fillForm(driver, "99999990B", "Jose", "Perez", "77777", "77777");
-		// COmprobamos el error de Nombre corto .
-		PO_RegisterView.checkKey(driver, "Error.signup.name.length", PO_Properties.getSPANISH());
-		// Rellenamos el formulario.
-		PO_RegisterView.fillForm(driver, "99999990B", "Josefo", "Per", "77777", "77777");
-		PO_RegisterView.checkKey(driver, "Error.signup.lastName.length", PO_Properties.getSPANISH());
-		PO_RegisterView.fillForm(driver, "99999990B", "Josefo", "Per", "7777", "77777");
-		PO_RegisterView.checkKey(driver, "Error.signup.password.length", PO_Properties.getSPANISH());
-		PO_RegisterView.fillForm(driver, "99999990B", "Josefo", "Perez", "77777", "7777");
-		PO_RegisterView.checkKey(driver, "Error.signup.passwordConfirm.coincidence", PO_Properties.getSPANISH());
-
-	}
-
-	// PRN. Loguearse con exito desde el ROl de Usuario, 99999990D, 123456
-	@Test
-	public void PR07() {
-		// Vamos al formulario de logueo.
-		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
-		// Rellenamos el formulario
-		PO_LoginView.fillForm(driver, "99999990A", "123456");
-		// COmprobamos que entramos en la pagina privada de Alumno
-		PO_View.checkElement(driver, "text", "Notas del usuario");
-
-	}
-
-	// profe
-	@Test
-	public void PR08() {
-		// Vamos al formulario de logueo.
-		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
-		// Rellenamos el formulario
-		PO_LoginView.fillForm(driver, "99999993D", "123456");
-		// COmprobamos que entramos en la pagina privada de Alumno
-		PO_View.checkElement(driver, "text", "modificar");
-
-	}
-
-	// admin
-	@Test
-	public void PR09() {
-		// Vamos al formulario de logueo.
-		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
-		// Rellenamos el formulario
-		PO_LoginView.fillForm(driver, "99999988F", "123456");
-		// COmprobamos que entramos en la pagina privada de Alumno
-		PO_View.checkElement(driver, "text", "Gestión de Usuarios");
-
-	}
-
-	// alumno
-	@Test
-	public void PR10() {
-		// Vamos al formulario de logueo.
-		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
-		// Rellenamos el formulario
-		PO_LoginView.fillForm(driver, "99999990A", "123456");
-		// COmprobamos que entramos en la pagina privada de Alumno
-		PO_View.checkElement(driver, "text", "Notas del usuario");
-
-	}
-
-	// alumno y desconexion
-	@Test
-	public void PR11() {
-		// Vamos al formulario de logueo.
-		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
-		// Rellenamos el formulario
-		PO_LoginView.fillForm(driver, "99999990A", "123456");
-		// COmprobamos que entramos en la pagina privada de Alumno
-		PO_View.checkElement(driver, "text", "Notas del usuario");
-
-		PO_HomeView.clickOption(driver, "logout", "class", "btn btn-primary");
-	}
-
+	/*
+	 * @Test public void PR01() { PO_HomeView.checkWelcome(driver,
+	 * PO_Properties.getSPANISH()); }
+	 * 
+	 * // PR02. OPción de navegación. Pinchar en el enlace Registro en la página
+	 * home
+	 * 
+	 * @Test public void PR02() { PO_HomeView.clickOption(driver, "signup", "class",
+	 * "btn btn-primary"); }
+	 * 
+	 * // PR03. OPción de navegación. Pinchar en el enlace Identificate en la página
+	 * // home
+	 * 
+	 * @Test public void PR03() { PO_HomeView.clickOption(driver, "login", "class",
+	 * "btn btn-primary"); }
+	 * 
+	 * // PR04. OPción de navegación. Cambio de idioma de Español a Ingles y vuelta
+	 * a // Español
+	 * 
+	 * @Test public void PR04() { PO_HomeView.checkChangeIdiom(driver, "btnSpanish",
+	 * "btnEnglish", PO_Properties.getSPANISH(), PO_Properties.getENGLISH()); //
+	 * SeleniumUtils.esperarSegundos(driver, 2); }
+	 * 
+	 * // PR05. Prueba del formulario de registro. registro con datos correctos
+	 * 
+	 * @Test public void PR05() { // Vamos al formulario de registro
+	 * PO_HomeView.clickOption(driver, "signup", "class", "btn btn-primary"); //
+	 * Rellenamos el formulario. PO_RegisterView.fillForm(driver, "77777778A",
+	 * "Josefo", "Perez", "77777", "77777"); // Comprobamos que entramos en la
+	 * sección privada PO_View.checkElement(driver, "text", "Notas del usuario"); }
+	 * 
+	 * // PR06. Prueba del formulario de registro. DNI repetido en la BD, Nombre
+	 * corto, // .... pagination
+	 * 
+	 * @Test public void PR06() { // Vamos al formulario de registro
+	 * PO_HomeView.clickOption(driver, "signup", "class", "btn btn-primary"); //
+	 * Rellenamos el formulario. PO_RegisterView.fillForm(driver, "99999990A",
+	 * "Josefo", "Perez", "77777", "77777"); PO_View.getP(); // COmprobamos el error
+	 * de DNI repetido. PO_RegisterView.checkKey(driver,
+	 * "Error.signup.dni.duplicate", PO_Properties.getSPANISH()); // Rellenamos el
+	 * formulario. PO_RegisterView.fillForm(driver, "99999990B", "Jose", "Perez",
+	 * "77777", "77777"); // COmprobamos el error de Nombre corto .
+	 * PO_RegisterView.checkKey(driver, "Error.signup.name.length",
+	 * PO_Properties.getSPANISH()); // Rellenamos el formulario.
+	 * PO_RegisterView.fillForm(driver, "99999990B", "Josefo", "Per", "77777",
+	 * "77777"); PO_RegisterView.checkKey(driver, "Error.signup.lastName.length",
+	 * PO_Properties.getSPANISH()); PO_RegisterView.fillForm(driver, "99999990B",
+	 * "Josefo", "Per", "7777", "77777"); PO_RegisterView.checkKey(driver,
+	 * "Error.signup.password.length", PO_Properties.getSPANISH());
+	 * PO_RegisterView.fillForm(driver, "99999990B", "Josefo", "Perez", "77777",
+	 * "7777"); PO_RegisterView.checkKey(driver,
+	 * "Error.signup.passwordConfirm.coincidence", PO_Properties.getSPANISH());
+	 * 
+	 * }
+	 * 
+	 * // PRN. Loguearse con exito desde el ROl de Usuario, 99999990D, 123456
+	 * 
+	 * @Test public void PR07() { // Vamos al formulario de logueo.
+	 * PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary"); //
+	 * Rellenamos el formulario PO_LoginView.fillForm(driver, "99999990A",
+	 * "123456"); // COmprobamos que entramos en la pagina privada de Alumno
+	 * PO_View.checkElement(driver, "text", "Notas del usuario");
+	 * 
+	 * }
+	 * 
+	 * // profe
+	 * 
+	 * @Test public void PR08() { // Vamos al formulario de logueo.
+	 * PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary"); //
+	 * Rellenamos el formulario PO_LoginView.fillForm(driver, "99999993D",
+	 * "123456"); // COmprobamos que entramos en la pagina privada de Alumno
+	 * PO_View.checkElement(driver, "text", "modificar");
+	 * 
+	 * }
+	 * 
+	 * // admin
+	 * 
+	 * @Test public void PR09() { // Vamos al formulario de logueo.
+	 * PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary"); //
+	 * Rellenamos el formulario PO_LoginView.fillForm(driver, "99999988F",
+	 * "123456"); // COmprobamos que entramos en la pagina privada de Alumno
+	 * PO_View.checkElement(driver, "text", "Gestión de Usuarios");
+	 * 
+	 * }
+	 * 
+	 * // alumno
+	 * 
+	 * @Test public void PR10() { // Vamos al formulario de logueo.
+	 * PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary"); //
+	 * Rellenamos el formulario PO_LoginView.fillForm(driver, "99999990A",
+	 * "123456"); // COmprobamos que entramos en la pagina privada de Alumno
+	 * PO_View.checkElement(driver, "text", "Notas del usuario");
+	 * 
+	 * }
+	 * 
+	 * // alumno y desconexion
+	 * 
+	 * @Test public void PR11() { // Vamos al formulario de logueo.
+	 * PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary"); //
+	 * Rellenamos el formulario PO_LoginView.fillForm(driver, "99999990A",
+	 * "123456"); // COmprobamos que entramos en la pagina privada de Alumno
+	 * PO_View.checkElement(driver, "text", "Notas del usuario");
+	 * 
+	 * PO_HomeView.clickOption(driver, "logout", "class", "btn btn-primary"); }
+	 */
 	// PR12. Loguearse, comprobar que se visualizan 4 filas de notas y desconectarse
 	// usando el rol de estudiante
 	@Test
 	public void PR12() {
-		// Vamos al formulario de logueo.
-		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
-		// Rellenamos el formulario
-		PO_LoginView.fillForm(driver, "99999990A", "123456");
-		// COmprobamos que entramos en la pagina privada de Alumno
-		PO_View.checkElement(driver, "text", "Notas del usuario");
-		// Contamos el número de filas de notas
+		PO_PrivateView.loginUserCheck(driver, "99999990A", "123456", "Notas del usuario");
 		List<WebElement> elementos = SeleniumUtils.EsperaCargaPagina(driver, "free", "//tbody/tr",
 				PO_View.getTimeout());
 		assertTrue(elementos.size() == 4);
-		// Ahora nos desconectamos
 		PO_PrivateView.clickOption(driver, "logout", "text", "Identifícate");
 	}
 
@@ -204,12 +178,7 @@ public class NotaneitorTests {
 	// P13. Ver la lista de Notas.
 	@Test
 	public void PR13() {
-		// Vamos al formulario de logueo.
-		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
-		// Rellenamos el formulario
-		PO_LoginView.fillForm(driver, "99999990A", "123456");
-		// COmprobamos que entramos en la pagina privada de Alumno
-		PO_View.checkElement(driver, "text", "Notas del usuario");
+		PO_PrivateView.loginUserCheck(driver, "99999990A", "123456", "Notas del usuario");
 		SeleniumUtils.esperarSegundos(driver, 1);
 		// Contamos las notas
 		By enlace = By.xpath("//td[contains(text(), 'Nota A2')]/following-sibling::*[2]");
@@ -226,29 +195,21 @@ public class NotaneitorTests {
 	// P14. Esta prueba podría encapsularse mejor ...
 	@Test
 	public void PR14() {
-		// Vamos al formulario de logueo.
-		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
-		// Rellenamos el formulario
-		PO_LoginView.fillForm(driver, "99999993D", "123456");
-		// COmprobamos que entramos en la pagina privada del Profesor
-		PO_View.checkElement(driver, "text", "99999993D");
-		// Pinchamos en la opción de menu de Notas: //li[contains(@id, 'marks-menu')]/a
-		List<WebElement> elementos = PO_View.checkElement(driver, "free", "//li[contains(@id,'marks-menu')]/a");
-		elementos.get(0).click();
-		// Esperamos a aparezca la opción de añadir nota: //a[contains(@href,
-		// 'mark/add')]
-		elementos = PO_View.checkElement(driver, "free", "//a[contains(@href, 'mark/add')]");
-		// Pinchamos en agregar Nota.
-		elementos.get(0).click();
-		// Ahora vamos a rellenar la nota. //option[contains(@value, '4')]
+
+		PO_PrivateView.loginUserCheck(driver, "99999993D", "123456", "99999993D");
+
+		PO_PrivateView.checkElementClickIndex(driver, "//li[contains(@id,'marks-menu')]/a", 0);
+
+		PO_PrivateView.checkElementClickIndex(driver, "//a[contains(@href, 'mark/add')]", 0);
+
 		PO_PrivateView.fillFormAddMark(driver, 3, "Nota Nueva 1", "8");
-		// Esperamos a que se muestren los enlaces de paginación la lista de notas
-		elementos = PO_View.checkElement(driver, "free", "//a[contains(@class, 'page-link')]");
-		// Nos vamos a la última página
-		elementos.get(3).click();
-		// Comprobamos que aparece la nota en la pagina
-		elementos = PO_View.checkElement(driver, "text", "Nota Nueva 1");
-		// Ahora nos desconectamos
+
+		PO_PrivateView.checkElementClickIndex(driver, "//a[contains(@class, 'page-link')]", 3);
+
+		PO_PrivateView.checkElementClickIndex(driver, "//a[contains(@class, 'page-link')]", 3);
+
+		PO_View.checkElement(driver, "text", "Nota Nueva 1");
+
 		PO_PrivateView.clickOption(driver, "logout", "text", "Identifícate");
 	}
 
@@ -257,32 +218,21 @@ public class NotaneitorTests {
 	// PRN. Ver la lista de Notas.
 	@Test
 	public void PR15() {
-		// Vamos al formulario de logueo.
-		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
-		// Rellenamos el formulario
-		PO_LoginView.fillForm(driver, "99999993D", "123456");
-		// COmprobamos que entramos en la pagina privada del Profesor
-		PO_View.checkElement(driver, "text", "99999993D");
-		// Pinchamos en la opción de menu de Notas: //li[contains(@id, 'marks-menu')]/a
-		List<WebElement> elementos = PO_View.checkElement(driver, "free", "//li[contains(@id, 'marks-menu')]/a");
-		elementos.get(0).click();
-		// Pinchamos en la opción de lista de notas.
-		elementos = PO_View.checkElement(driver, "free", "//a[contains(@href,'mark/list')]");
-		elementos.get(0).click();
-		// Esperamos a que se muestren los enlaces de paginacion la lista de notas
-		elementos = PO_View.checkElement(driver, "free", "//a[contains(@class, 'page-link')]");
-		// Nos vamos a la última página
-		elementos.get(3).click();
-		// Esperamos a que aparezca la Nueva nota en la ultima pagina
-		elementos = PO_View.checkElement(driver, "free",
-				"//td[contains(text(), 'Nota Nueva 1')]/following-sibling::*/a[contains(@href, 'mark/delete')]");
-		elementos.get(0).click();
-		// Volvemos a la última pagina
-		elementos = PO_View.checkElement(driver, "free", "//a[contains(@class, 'page-link')]");
-		elementos.get(3).click();
-		// Y esperamos a que NO aparezca la ultima "Nueva Nota 1"
+		PO_PrivateView.loginUserCheck(driver, "99999993D", "123456", "99999993D");
+
+		PO_PrivateView.checkElementClickIndex(driver, "//li[contains(@id, 'marks-menu')]/a", 0);
+
+		PO_PrivateView.checkElementClickIndex(driver, "//a[contains(@href,'mark/list')]", 0);
+
+		PO_PrivateView.checkElementClickIndex(driver, "//a[contains(@class, 'page-link')]", 3);
+
+		PO_PrivateView.checkElementClickIndex(driver,
+				"//td[contains(text(), 'Nota Nueva 1')]/following-sibling::*/a[contains(@href, 'mark/delete')]", 0);
+
+		PO_PrivateView.checkElementClickIndex(driver, "//a[contains(@class, 'page-link')]", 3);
+
 		SeleniumUtils.EsperaCargaPaginaNoTexto(driver, "Nota Nueva 1", PO_View.getTimeout());
-		// Ahora nos desconectamos
+
 		PO_PrivateView.clickOption(driver, "logout", "text", "Identifícate");
 	}
 
