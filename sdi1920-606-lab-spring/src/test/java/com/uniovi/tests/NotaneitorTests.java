@@ -26,8 +26,11 @@ import com.uniovi.utils.SeleniumUtils;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class NotaneitorTests {
-	static String PathFirefox65 = "D:\\PROGRAMAS\\FIREFOX\\FIREFOX 65.0.1\\firefox.exe";
-	static String Geckdriver024 = "F:\\TERCERO\\SDI\\OneDrive_2020-02-29\\material\\geckodriver024win64.exe";
+
+	static String PathFirefox65 = "D:\\PROGRAMAS\\FIREFOX\\FIREFOX\\firefox.exe";
+	static String Geckdriver024 = "D:\\PROGRAMAS\\FIREFOX\\MATERIAL\\geckodriver024win64.exe";
+	/*static String PathFirefox65 = "D:\\PROGRAMAS\\FIREFOX\\firefox.exe";
+	static String Geckdriver024 = "D:\\PROGRAMAS\\FIREFOX\\geckodriver024win64.exe";*/
 	static WebDriver driver = getDriver(PathFirefox65, Geckdriver024);
 	static String URL = "http://localhost:8090";
 
